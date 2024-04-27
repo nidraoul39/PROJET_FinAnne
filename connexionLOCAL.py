@@ -1,3 +1,5 @@
+#pour que sa fonctionne veuillez enlever LOCAL du nom du fichier 
+
 import socket
 import pickle
 
