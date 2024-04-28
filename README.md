@@ -24,6 +24,10 @@ Pour jouer, suivez ces étapes :
 ```bash
 nohup ./StartServpy &
 ```
+avant si se n'est pas déja fait donnez les autorisation d'éxécution avec : 
+```bash
+chmod +x StartServpy
+```
 
 Cela lancera le serveur et créera un fichier de log dans le même dossier.
 
