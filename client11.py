@@ -1,4 +1,3 @@
-#les modules nécessaires
 from tkinter import *
 from connexion import Client # mon module connexion.py
 import webbrowser
@@ -144,7 +143,7 @@ class Interface:
 
         if "gagnant" in data.keys():
             self.afficher_gagnant(data["gagnant"])
-            time.sleep(3)
+            time.sleep(7)
             self.fermer_fenetre() 
             self.client.fermer_connexion()
 
@@ -159,8 +158,6 @@ class Interface:
             pass
         if "errorO" in data.keys() and self.joueur != "X":
             pass
-
-
         if "plateau" in data.keys():
             self.maj_plateau(data["plateau"])
         if "erreur" in data.keys():
