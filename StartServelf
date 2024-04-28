@@ -1,0 +1,19 @@
+#!/bin/bash
+executable="server"
+
+while true; do
+  # Exécutez l'exécutable en arrière-plan
+  "$executable" &
+  # Récupérez le PID du processus
+  pid=$!
+  # Attendez la fin du processus
+  wait $pid
+  # Vérifiez le code de sortie du processus
+  if [ $? -ne 0 ]; then
+    echo "L'exécutable '$executable' a échoué avec le code de sortie $?."
+    # (Optionnel) Ajoutez une action ici en cas d'échec
+  else
+    echo "L'exécutable '$executable' s'est terminé avec succès."
+  fi
+  # Relancez l'exécutable
+done
