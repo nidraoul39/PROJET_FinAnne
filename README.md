@@ -47,7 +47,6 @@ python serverWindows.py
 
 ## Problèmes connus
 
-- **Bug de réception des messages (local uniquement):** À la fin de la partie, un seul message de victoire est reçu au lieu de deux. Cela se produit uniquement en mode local car le serveur n'envoie qu'un seul message par adresse.
 - **Bug de fin de partie:** À la fin de la partie, le deuxième joueur doit cliquer comme s'il jouait pour recevoir la notification de fin de partie du serveur. Ce bug est dû au fait que le serveur gère la partie et que le client 2 doit envoyer une requête pour attendre la réponse du serveur.
 
 Ces problèmes sont répertoriés pour améliorer votre expérience de jeu.
