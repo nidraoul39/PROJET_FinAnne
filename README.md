@@ -39,6 +39,12 @@ Cela lancera le serveur et créera un fichier de log dans le même dossier.
 python serverWindows.py
 ```
 
+2. sur windows il y a aussi 3 éxécutable possible le server local, le jeu local, et le jeu pour le server officiel (le mien).
+
+```bash
+./executable.exe
+```
+
 ## Problèmes connus
 
 - **Bug de réception des messages (local uniquement):** À la fin de la partie, un seul message de victoire est reçu au lieu de deux. Cela se produit uniquement en mode local car le serveur n'envoie qu'un seul message par adresse.
