@@ -11,8 +11,7 @@ class Puissance4Partie:
         self.gagnant = None  # Joueur gagnant
         self.match_nul = False  # Match nul
         self.terminer = False  # Partie terminée
-        self.it1 = 0  # Variable it1
-        self.it2 = 0  # Variable it2
+
 
     def get_gagnant(self):
         return self.gagnant  # Renvoie le joueur gagnant
@@ -123,6 +122,7 @@ class puissance4server:
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Socket du serveur
         self.server.bind(destination) # Lie le socket à l'adresse et au port spécifiés
         self.choice = None
+        self.server.settimeout(3600) # Temps d'attente pour la connexion des clients
 
     def attendre_clients(self):
         print("En attente de connexion...")
@@ -227,9 +227,16 @@ class puissance4server:
 
 # Crée une instance de la classe puissance4server et lance des partie une par une a l'infinie
 #programme principal
-while True:
-    server = puissance4server(("0.0.0.0", 5555))
-    server.main()
-    server.fermer_connexion()
-    server = 0
-    time.sleep(5)
+while True: # facultatif dans la version linux
+    try:
+
+        server = puissance4server(("0.0.0.0", 5555))
+        server.main()
+        server.fermer_connexion()
+        server = None
+        time.sleep(5)
+    except: # dans le cas ou le port n'a pas été libéré réessayer après 5 secondes
+        print("port bloqué, réessayer dans 5 secondes")
+        server.fermer_connexion()
+        server = None
+        time.sleep(5)
