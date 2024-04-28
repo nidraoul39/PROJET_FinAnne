@@ -13,7 +13,6 @@ class Client:
         self.socket.send(pickle.dumps(donnees))
     
     def recevoir_donnees(self):
-        self.socket.settimeout(3600)
         donnees = self.socket.recv(1024)
         return pickle.loads(donnees)
     
