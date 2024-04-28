@@ -29,7 +29,7 @@ avant si se n'est pas déja fait donnez les autorisation d'éxécution avec :
 chmod +x StartServpy
 ```
 
-Cela lancera le serveur et créera un fichier de log dans le même dossier.
+Cela lancera le serveur et créera un fichier de log dans le même dossier de plus on peut relancer une partie au bout d'une minute a peut pres le temps que le port se libère et qu'un autre s'ouvre.
 
 **Windows**
 
