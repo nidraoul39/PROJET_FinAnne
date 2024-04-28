@@ -227,6 +227,13 @@ class puissance4server:
 
 # Crée une instance de la classe puissance4server et lance des partie une par une a l'infinie
 #programme principal
-server = puissance4server(("0.0.0.0", 5555))
-server.main()
-server = None
+try:
+    server = puissance4server(("0.0.0.0", 5555))
+    server.main()
+    server = None
+    time.sleep(5)
+except: # dans le cas ou le port n'a pas été libéré réessayer après 5 secondes
+    print("port bloqué, réessayer dans 5 secondes")
+    server.fermer_connexion()
+    server = None
+    time.sleep(5)
