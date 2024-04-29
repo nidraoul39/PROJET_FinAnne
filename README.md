@@ -11,10 +11,13 @@ Bienvenue dans mon projet de fin d'année : un jeu de Puissance 4 en ligne !
 Pour jouer, suivez ces étapes :
 
 1. Exécutez `client.py`.
-2. Pour vous connecter à votre propre serveur, utilisez `connexion.py`.
-3. Si vous préférez tester en local, utilisez `connexionLOCAL.py`. **Attention** : Renommez ce fichier en `connexion.py` avant de l'exécuter, car le client en dépend.
-
+2. Pour vous connecter à votre propre serveur, utilisez `clientlocal.py`.
+3. avec les 2 client on peut se connecter a d'autre server mais dans le premier le server par défaut et mon server et dans le 2 eme le server par défaut est un server local sur l'addresse 127.0.0.1 (local)
+4. pour se connecter a un server disponible chez sois qui execute le programme server on peut utiliser l'ip local (addresse ip privé)
 ### Serveur
+**Server local ou distant ?**
+1. pour un server local seul l'ip local suffit et le port pour se connecter.
+2. pour un server sur une autre box (pas chez sois) une reddirection de port sera nécéssaire si le server.
 
 **Linux**
 
@@ -38,6 +41,7 @@ Cela lancera le serveur et créera un fichier de log dans le même dossier de pl
 ```bash
 python serverWindows.py
 ```
+
 
 2. sur windows il y a aussi 3 éxécutable possible le server local, le jeu local, et le jeu pour le server officiel (le mien).
 
