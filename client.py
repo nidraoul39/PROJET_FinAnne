@@ -5,8 +5,8 @@ import time
 
 # Classe Interface pour gérer l'interface graphique du jeu
 class Interface:   
-    def __init__(self):
-        self.client = Client()
+    def __init__(self,ip:str ,port:int):
+        self.client = Client(ip,port)
         self.joueur = None
         self.boutons = [[] for _ in range(6)]
         self.turn = "X"
@@ -183,7 +183,7 @@ def ouvrir_discord():
     webbrowser.open("https://discord.gg/deNudFYSnU")
 
 # Fonction pour afficher le menu principal
-def menu_principal():
+def menu_principal(error):
     global root_menu
     root_menu = Tk()
     root_menu.title("Puissance 4")
@@ -192,36 +192,60 @@ def menu_principal():
     root_menu.geometry("1920x1080")
     root_menu.attributes("-fullscreen", True)
 
-    bouton_quitter = Button(root_menu, text="X", command=root_menu.destroy, font=("Arial", 20), bg="red", fg="white")
+    bouton_quitter = Button(root_menu, text="X", command=root_menu.destroy, font=("Arial", 15), bg="red", fg="white")
     bouton_quitter.pack(side=TOP, anchor=NE, padx=10, pady=10)
 
-    etiquette_bienvenue = Label(root_menu, text="Bienvenue sur le Puissance 4 \n n'hésitez pas à aller visiter notre site", bg="beige", fg="black", font=("Arial", 30))
+    etiquette_bienvenue = Label(root_menu, text="Bienvenue sur le Puissance 4 \n n'hésitez pas à aller visiter notre site", bg="beige", fg="black", font=("Arial", 20))
     etiquette_bienvenue.pack(side=TOP, fill=X, padx=10, pady=10)
 
-    bouton_connexion = Button(root_menu, text="Se connecter", width=25, height=3, bg="#2ecc71", fg="white", font=("Arial", 20), command=lambda: main(root_menu))
-    bouton_connexion.pack(side=TOP, padx=10, pady=10)
+    error_label = Label(root_menu, text=error, bg="beige", fg="red", font=("Arial", 15))
+    error_label.pack(side=TOP, fill=X, padx=10, pady=10)
 
-    bouton_site_web = Button(root_menu, text="NOTRE SITE", width=25, height=3, bg="#2ecc71", fg="white", font=("Arial", 20), command=ouvrir_site_web)
+    bouton_connexion = Button(root_menu, text="Se connecter", width=20, height=3, bg="#2ecc71", fg="white", font=("Arial", 15), command=lambda: main(root_menu,ip="82.67.59.220",port=5555))
+    bouton_connexion.pack(side=TOP, padx=10, pady=10)
+    
+    bouton_site_web = Button(root_menu, text="NOTRE SITE", width=20, height=3, bg="#2ecc71", fg="white", font=("Arial", 15), command=ouvrir_site_web)
     bouton_site_web.pack(side=TOP, padx=10, pady=10)
 
-    bouton_instagram = Button(root_menu, text="Mon Insta", width=25, height=3, bg="#2ecc71", fg="white", font=("Arial", 20), command=ouvrir_instagram)
+    bouton_instagram = Button(root_menu, text="Mon Insta", width=20, height=3, bg="#2ecc71", fg="white", font=("Arial", 15), command=ouvrir_instagram)
     bouton_instagram.pack(side=TOP, padx=10, pady=10)
 
-    bouton_discord = Button(root_menu, text="SERVEUR DISCORD", width=25, height=3, bg="#2ecc71", fg="white", font=("Arial", 20), command=ouvrir_discord)
+    bouton_discord = Button(root_menu, text="SERVEUR DISCORD", width=20, height=3, bg="#2ecc71", fg="white", font=("Arial", 15), command=ouvrir_discord)
     bouton_discord.pack(side=TOP, padx=10, pady=10)
+
+    addresse_ip_personnalise = Entry(root_menu, width=20, font=("Arial", 15))
+    addresse_ip_personnalise.pack(side=TOP, padx=10, pady=10)
+
+    port_personnalise = Entry(root_menu, width=20, font=("Arial", 15))
+    port_personnalise.pack(side=TOP, padx=10, pady=10)
+
+    connexion_personnalise = Button(root_menu, text="Connexion personnalisée", width=20, height=2, bg="#2ecc71", fg="white", font=("Arial", 15), command=lambda: main(root_menu,ip=addresse_ip_personnalise.get(),port=port_personnalise.get()))
+    connexion_personnalise.pack(side=TOP, padx=10, pady=10)
+
+
 
     root_menu.mainloop()
 
 # Fonction principale pour lancer le jeu
-def main(fenster):
-    fenster.destroy()
-    game = Interface()
+def main(fenster, ip, port):
     try:
-        game.connexion()
-        game.faire_fenetre()
+        port = int(port)
     except:
-        game.afficher_erreur("Erreur de connexion")
-        menu_principal()
+        fenster.destroy()
+        return menu_principal("Erreur le port n'est pas valide")
+
+    if isinstance(ip, str) and isinstance(port, int):
+        fenster.destroy()
+        game = Interface(ip, port)
+        try:
+            game.connexion()
+            game.faire_fenetre()
+        except:
+            game.afficher_erreur("Erreur de connexion")
+            menu_principal(None)
+    else:
+        fenster.destroy()
+        return menu_principal("Erreur le port ou l'ip n'est pas valide")
 
 # Lancement du menu principal
-menu_principal()
+menu_principal(None)
