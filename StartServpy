@@ -1,17 +1,8 @@
 #!/bin/bash
-
-# Remplacez "mon_programme.py" par le nom réel de votre fichier Python
-programme_python="mon_programme.py"
+programme_python="server.py"
 
 while true; do
   # Exécutez le programme Python
   python "$programme_python"
-
-  # Attendez la fin du programme Python
   wait
-
-  # (Optionnel) Ajoutez une action ici après la fin du programme
-  # echo "Programme Python terminé avec succès."
-
-  # Relancez le programme Python
 done
